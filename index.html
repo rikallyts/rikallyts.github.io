@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rikally · Supervisor de TI</title>
+<meta name="description" content="Supervisor de TI. Gestão de equipes de desenvolvimento e técnica, automação de processos com as áreas de negócio, infraestrutura, redes, RFID e IoT.">
+<meta name="author" content="Rikally">
+<meta name="theme-color" content="#0D1A2B">
+<link rel="canonical" href="https://rikallyts.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230D1A2B'/%3E%3Ctext x='32' y='44' font-family='Arial' font-weight='800' font-size='34' text-anchor='middle' fill='%237FA3FF'%3ER%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://rikallyts.github.io/">
+<meta property="og:title" content="Rikally · Supervisor de TI">
+<meta property="og:description" content="Supervisor de TI. Gestão de equipes de desenvolvimento e técnica, automação de processos com as áreas de negócio, infraestrutura, redes, RFID e IoT.">
+<meta property="og:image" content="https://rikallyts.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rikally · Supervisor de TI">
+<meta name="twitter:description" content="Supervisor de TI. Gestão de equipes de desenvolvimento e técnica, automação de processos com as áreas de negócio, infraestrutura, redes, RFID e IoT.">
+<meta name="twitter:image" content="https://rikallyts.github.io/og-image.png">
+<style>
+:root{color-scheme:light; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: placa de identificação no topo; depois seções em coluna única de 1120px,
+   alternando texto e blocos (etapas de trabalho, equipes, infraestrutura, arquitetura, projetos). */
+:root{
+  --paper:#F1F4F8; --surface:#FFFFFF; --ink:#0D1A2B; --muted:#4D5B6F; --line:#D3DBE6;
+  --accent:#1D4ED8; --accent-soft:#E2E9FB; --signal:#B86A00; --signal-soft:#FBEFD9;
+  --app-bg:#FFFFFF; --app-ink:#0D1A2B; --app-blue:#1D4ED8; --app-soft:#EAF0FD; --app-line:#E1E7F0; --app-muted:#5B6879;
+  --display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body:"IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0A111C; --surface:#101A29; --ink:#E6ECF5; --muted:#9AA8BC; --line:#22324A;
+    --accent:#7FA3FF; --accent-soft:#15254A; --signal:#F0B44A; --signal-soft:#2B2213; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0A111C; --surface:#101A29; --ink:#E6ECF5; --muted:#9AA8BC; --line:#22324A;
+  --accent:#7FA3FF; --accent-soft:#15254A; --signal:#F0B44A; --signal-soft:#2B2213; color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper); color:var(--ink); font-family:var(--body); font-size:16px; line-height:1.6;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px));}
+.wrap{max-width:1120px; margin:0 auto}
+a{color:var(--accent)}
+a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+h1,h2,h3{font-family:var(--display); text-wrap:balance; margin:0; line-height:1.08}
+h2{font-size:clamp(28px, 4vw, 42px); font-variation-settings:"wdth" 112; font-weight:750; letter-spacing:-.01em}
+h3{font-size:19px; font-weight:700; font-variation-settings:"wdth" 104}
+p{margin:0}
+.label{font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.lead{font-size:18px; color:var(--muted); max-width:62ch}
+section{padding-block:72px; border-top:1px solid var(--line)}
+.sec-head{display:grid; gap:14px; margin-bottom:40px}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{font-family:var(--mono); font-size:12px; padding:3px 8px; border:1px solid var(--line); border-radius:3px; color:var(--muted); background:var(--surface)}
+
+/* ---------- topo ---------- */
+.top{display:flex; justify-content:space-between; align-items:center; gap:16px; padding-block:22px; flex-wrap:wrap}
+.brand{font-family:var(--display); font-weight:800; font-variation-settings:"wdth" 125; font-size:18px; letter-spacing:.02em}
+.nav{display:flex; gap:18px; flex-wrap:wrap}
+.nav a{color:var(--muted); text-decoration:none; font-size:14px}
+.nav a:hover{color:var(--ink)}
+
+/* ---------- hero ---------- */
+.hero{display:grid; grid-template-columns:1.25fr .9fr; gap:48px; align-items:center; padding-block:48px 72px}
+.hero > *{min-width:0}
+.hero h1{font-size:clamp(40px, 6.4vw, 76px); font-weight:800; font-variation-settings:"wdth" 118; letter-spacing:-.02em}
+.hero h1 em{font-style:normal; color:var(--accent)}
+.hero .lead{margin-top:22px}
+.cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:30px}
+.btn{display:inline-flex; align-items:center; gap:8px; font:500 15px var(--body); padding:11px 18px; border-radius:6px; border:1px solid var(--ink); background:var(--ink); color:var(--paper); text-decoration:none; cursor:pointer}
+.btn.ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+.btn:hover{transform:translateY(-1px)}
+
+.plate{position:relative; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:26px 24px 22px; overflow:hidden}
+.plate::before, .plate::after{content:""; position:absolute; width:9px; height:9px; border-radius:50%; border:1px solid var(--line); top:12px}
+.plate::before{left:12px} .plate::after{right:12px}
+.plate .waves{position:absolute; right:-30px; bottom:-30px; width:200px; height:200px; color:var(--accent); opacity:.9}
+.waves circle{fill:none; stroke:currentColor; stroke-width:1.2; transform-origin:100px 100px; animation:ping 3.2s ease-out infinite}
+.waves circle:nth-child(2){animation-delay:.8s} .waves circle:nth-child(3){animation-delay:1.6s} .waves circle:nth-child(4){animation-delay:2.4s}
+@keyframes ping{0%{transform:scale(.25); opacity:.9} 100%{transform:scale(1); opacity:0}}
+@media (prefers-reduced-motion: reduce){.waves circle{animation:none; opacity:.35} .waves circle:nth-child(1){transform:scale(.3)} .waves circle:nth-child(2){transform:scale(.55)} .waves circle:nth-child(3){transform:scale(.8)} .waves circle:nth-child(4){transform:scale(1)}}
+.plate dl{margin:14px 0 0; display:grid; grid-template-columns:auto 1fr; gap:10px 18px; position:relative}
+.plate dt{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); padding-top:3px}
+.plate dd{margin:0; font-weight:500}
+.plate .serial{position:relative; margin-top:20px; padding-top:14px; border-top:1px dashed var(--line); font-family:var(--mono); font-size:12px; color:var(--muted)}
+
+.stats{display:grid; grid-template-columns:repeat(4, 1fr); border:1px solid var(--line); border-radius:10px; background:var(--surface); margin-bottom:72px}
+.stat{padding:20px 22px; border-left:1px solid var(--line)}
+.stat:first-child{border-left:0}
+.stat b{display:block; font-family:var(--display); font-variation-settings:"wdth" 120; font-size:34px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums}
+.stat span{display:block; margin-top:8px; font-size:14px; color:var(--muted)}
+
+/* ---------- forma de trabalho ---------- */
+.flow{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden}
+.flow li{background:var(--surface); padding:24px 22px 26px; display:grid; gap:10px; align-content:start}
+.flow .n{font-family:var(--mono); font-size:12px; color:var(--accent)}
+.flow p{font-size:15px; color:var(--muted)}
+.callout{margin-top:20px; padding:20px 22px; border-radius:10px; background:var(--accent-soft); display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start}
+.callout .label{color:var(--accent)}
+.callout p{font-size:15px}
+.callout.warm{background:var(--signal-soft)}
+.callout.warm .label{color:var(--signal)}
+
+/* ---------- equipes ---------- */
+.teams{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+.team{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:28px; display:grid; gap:16px; align-content:start}
+.team .who{display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap}
+.team ul{margin:0; padding:0; list-style:none; display:grid; gap:12px}
+.team li{display:grid; grid-template-columns:14px 1fr; gap:10px; font-size:15px}
+.team li::before{content:""; width:8px; height:8px; margin-top:8px; border:2px solid var(--accent); border-radius:2px}
+.team.field li::before{border-color:var(--signal)}
+
+/* ---------- infraestrutura ---------- */
+.infra{display:grid; grid-template-columns:1fr 1fr; gap:20px}
+.icard{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:26px 24px; display:grid; gap:12px; align-content:start}
+.icard p{font-size:15px; color:var(--muted)}
+.icard .label{color:var(--accent)}
+.icard.warm .label{color:var(--signal)}
+
+/* ---------- arquitetura ---------- */
+.lanes{display:grid; gap:14px}
+.lane{display:grid; grid-template-columns:150px 1fr; gap:18px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:18px 20px}
+.lane > *{min-width:0}
+.lane .label{color:var(--ink)}
+.lane .label small{display:block; color:var(--muted); text-transform:none; letter-spacing:0; font-size:12px; margin-top:2px}
+.nodes{display:flex; flex-wrap:wrap; align-items:stretch; gap:6px}
+.node{padding:8px 12px; border:1px solid var(--line); border-radius:6px; font-size:14px; line-height:1.3; background:var(--paper)}
+.node small{display:block; font-family:var(--mono); font-size:11px; color:var(--muted)}
+.node.mine{border-color:var(--accent); background:var(--accent-soft)}
+.arrow{align-self:center; color:var(--muted); font-family:var(--mono)}
+.legend{display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; font-size:13px; color:var(--muted)}
+.legend i{display:inline-block; width:12px; height:12px; border-radius:3px; border:1px solid var(--accent); background:var(--accent-soft); vertical-align:-2px; margin-right:6px}
+
+/* ---------- projetos ---------- */
+.feature{display:grid; grid-template-columns:1.3fr .8fr; gap:36px; background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:34px; margin-bottom:20px; align-items:center}
+.feature > *{min-width:0}
+.feature h3{font-size:clamp(24px, 3vw, 32px); font-variation-settings:"wdth" 115; margin:8px 0 12px}
+.feature ul{margin:18px 0; padding-left:18px; display:grid; gap:8px; color:var(--muted); font-size:15px}
+.feature ul strong{color:var(--ink); font-weight:600}
+.projects{display:grid; grid-template-columns:repeat(3, 1fr); gap:20px}
+.proj{background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:24px 22px; display:flex; flex-direction:column; gap:12px}
+.proj p{font-size:15px; color:var(--muted)}
+.proj .out{color:var(--ink); font-size:14px; padding-top:12px; border-top:1px dashed var(--line); margin-top:auto}
+.tag-warm{color:var(--signal)} .tag-cool{color:var(--accent)}
+
+.phone{width:min(260px, 100%); margin:0 auto; border-radius:30px; padding:10px; background:var(--ink); box-shadow:0 18px 40px -20px rgba(13,26,43,.45)}
+.screen{background:var(--app-bg); color:var(--app-ink); border-radius:22px; overflow:hidden; font-family:var(--body)}
+.app-bar{background:var(--app-blue); color:#FFFFFF; padding:16px 16px 18px}
+.app-bar small{display:block; font-size:10px; letter-spacing:.12em; text-transform:uppercase; opacity:.85}
+.app-bar strong{font-size:15px}
+.app-body{padding:14px; display:grid; gap:10px}
+.count{background:var(--app-soft); border-radius:12px; padding:12px}
+.count small{font-size:11px; color:var(--app-muted)}
+.count b{display:block; font-size:28px; font-variant-numeric:tabular-nums; color:var(--app-blue); line-height:1.1}
+.bar{height:6px; border-radius:6px; background:var(--app-line); overflow:hidden; margin-top:8px}
+.bar span{display:block; height:100%; width:72%; background:var(--app-blue)}
+.row{display:flex; justify-content:space-between; font-size:12px; padding:8px 2px; border-bottom:1px solid var(--app-line)}
+.row span:last-child{font-variant-numeric:tabular-nums; color:var(--app-muted)}
+.app-btn{margin-top:4px; text-align:center; background:var(--app-blue); color:#FFFFFF; border-radius:10px; padding:10px; font-size:13px; font-weight:600}
+.mock-note{text-align:center; margin-top:12px}
+
+/* ---------- competências ---------- */
+.stack{display:grid; grid-template-columns:repeat(4, 1fr); gap:20px}
+.stack > div{display:grid; gap:12px; align-content:start}
+.stack h3{font-size:16px}
+
+/* ---------- contato ---------- */
+.contact{display:grid; grid-template-columns:1.2fr 1fr; gap:40px; align-items:end}
+.contact > *{min-width:0}
+.contact h2{font-size:clamp(32px, 5vw, 56px); font-variation-settings:"wdth" 118}
+.lines{display:grid; gap:10px}
+.cline{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:14px 16px; border:1px solid var(--line); border-radius:8px; background:var(--surface); flex-wrap:wrap}
+.cline span{font-family:var(--mono); font-size:14px; user-select:all; overflow-wrap:anywhere}
+.copy{font:500 13px var(--body); border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:6px 10px; border-radius:5px; cursor:pointer}
+footer{padding-block:28px 40px; border-top:1px solid var(--line); color:var(--muted); font-size:13px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap}
+
+@media (max-width: 960px){
+  .hero, .feature, .contact{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(2, 1fr)}
+  .projects{grid-template-columns:1fr 1fr}
+  .stack{grid-template-columns:1fr 1fr}
+}
+@media (max-width: 640px){
+  section{padding-block:56px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .flow, .teams, .infra, .projects, .stack{grid-template-columns:1fr}
+  .lane{grid-template-columns:1fr}
+  .callout{grid-template-columns:1fr; gap:6px}
+  .feature{padding:24px 20px}
+  .nav{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">RIKALLY</div>
+    <nav class="nav" aria-label="Seções">
+      <a href="#trabalho">Como trabalho</a>
+      <a href="#equipes">Equipes</a>
+      <a href="#infra">Infraestrutura</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="label">Supervisor de TI · GAO Lavanderia</p>
+      <h1 style="margin-top:14px">Tecnologia construída <em>junto com quem opera</em>.</h1>
+      <p class="lead">Lidero o time de desenvolvimento e a equipe técnica. Trabalho lado a lado com os departamentos para entender seus processos e, juntos, encontrar soluções que automatizam a operação, do sistema à infraestrutura.</p>
+      <div class="cta">
+        <a class="btn" href="#projetos">Ver projetos</a>
+        <a class="btn ghost" href="https://github.com/rikallyts" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <aside class="plate" aria-label="Resumo profissional">
+      <svg class="waves" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="96"/></svg>
+      <p class="label">Resumo</p>
+      <dl>
+        <dt>Cargo</dt><dd>Supervisor de TI</dd>
+        <dt>Lidera</dt><dd>Time de desenvolvimento e equipe técnica</dd>
+        <dt>Foco</dt><dd>Automação de processos com as áreas de negócio</dd>
+        <dt>Frentes</dt><dd>Software · Infraestrutura · Suporte · RFID e IoT</dd>
+      </dl>
+      <p class="serial">Gestão · Redes · Firewall · GLPI · Docker · RFID</p>
+    </aside>
+  </div>
+
+  <div class="stats" role="list">
+    <div class="stat" role="listitem"><b>2</b><span>equipes lideradas: desenvolvimento e técnica</span></div>
+    <div class="stat" role="listitem"><b>6</b><span>desenvolvedores no time</span></div>
+    <div class="stat" role="listitem"><b>10</b><span>sistemas e integrações entregues ou em evolução</span></div>
+    <div class="stat" role="listitem"><b>4</b><span>frentes: software, infraestrutura, suporte e campo</span></div>
+  </div>
+</div>
+
+<section id="trabalho">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Como eu trabalho</p>
+      <h2>Entender o processo antes de escolher a tecnologia</h2>
+      <p class="lead">Cada solução nasce de uma conversa com o departamento responsável. Mapeamos juntos onde está o retrabalho, desenhamos a solução em conjunto e eu conduzo o time até a entrega.</p>
+    </div>
+
+    <ol class="flow">
+      <li><span class="n">01 · Entender</span><h3>Com quem vive o processo</h3><p>Reuniões com os departamentos para mapear rotinas, gargalos e o que pode ser automatizado.</p></li>
+      <li><span class="n">02 · Desenhar</span><h3>Solução construída em conjunto</h3><p>Requisitos, fluxos e mockups validados com a área antes de qualquer linha de código.</p></li>
+      <li><span class="n">03 · Entregar</span><h3>Desenvolvimento em fases</h3><p>Prioridades claras para o time, entregas incrementais e ambientes padronizados com Docker.</p></li>
+      <li><span class="n">04 · Sustentar</span><h3>Implantar, suportar e evoluir</h3><p>Implantação, treinamento, atendimento por ordens de serviço e melhorias contínuas.</p></li>
+    </ol>
+
+    <div class="callout">
+      <span class="label">Princípio</span>
+      <p>Automação só funciona quando quem usa participa da construção. Por isso as áreas de negócio validam cada etapa, e o que volta do uso real vira melhoria planejada para o time.</p>
+    </div>
+  </div>
+</section>
+
+<section id="equipes">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Gestão de equipes</p>
+      <h2>Duas equipes, um mesmo objetivo</h2>
+      <p class="lead">Supervisiono quem desenvolve o software e quem instala e mantém a infraestrutura e os equipamentos. Meu papel é dar direção, remover bloqueios e manter as duas equipes alinhadas.</p>
+    </div>
+
+    <div class="teams">
+      <article class="team">
+        <div class="who"><h3>Time de desenvolvimento</h3><span class="label">6 desenvolvedores</span></div>
+        <ul>
+          <li><span>Tradução das necessidades das áreas em requisitos, mockups e critérios de aceite.</span></li>
+          <li><span>Priorização do backlog e planejamento de entregas em fases.</span></li>
+          <li><span>Padrões de versionamento e repositórios com Git e GitHub.</span></li>
+          <li><span>Ambientes padronizados com Docker e deploy em servidores Linux.</span></li>
+          <li><span>Documentação técnica e de processos centralizada na wiki interna.</span></li>
+        </ul>
+      </article>
+      <article class="team field">
+        <div class="who"><h3>Equipe técnica</h3><span class="label">Campo e suporte</span></div>
+        <ul>
+          <li><span>Planejamento e acompanhamento de instalações de equipamentos RFID nos clientes.</span></li>
+          <li><span>Integração de dispositivos IoT com equipamentos industriais via Modbus.</span></li>
+          <li><span>Diagnóstico com noções de eletrônica, cabeamento e alimentação.</span></li>
+          <li><span>Atendimento e manutenção organizados por ordens de serviço no GLPI.</span></li>
+          <li><span>Retorno do campo transformado em tarefas objetivas para o desenvolvimento.</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="infra">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Infraestrutura e suporte</p>
+      <h2>A base que mantém tudo funcionando</h2>
+      <p class="lead">Além do software, respondo pela infraestrutura, pela segurança da rede e pela organização do suporte e dos ativos de TI.</p>
+    </div>
+
+    <div class="infra">
+      <article class="icard">
+        <span class="label">Redes e segurança</span>
+        <h3>Redes, firewall e VPN</h3>
+        <p>Administração de redes corporativas com MikroTik, regras de firewall, túneis VPN entre sites e Wi-Fi corporativo com UniFi.</p>
+        <div class="chips"><span class="chip">MikroTik</span><span class="chip">Firewall</span><span class="chip">VPN</span><span class="chip">UniFi</span></div>
+      </article>
+      <article class="icard">
+        <span class="label">Service desk</span>
+        <h3>GLPI, ativos e ordens de serviço</h3>
+        <p>Controle de chamados e ordens de serviço, inventário e controle de ativos de TI, com histórico de cada equipamento.</p>
+        <div class="chips"><span class="chip">GLPI</span><span class="chip">Controle de ativos</span><span class="chip">Ordens de serviço</span></div>
+      </article>
+      <article class="icard">
+        <span class="label">Servidores e monitoramento</span>
+        <h3>Linux, containers e Zabbix</h3>
+        <p>Servidores e VMs Linux, aplicações em containers Docker publicadas com nginx e monitoramento de disponibilidade com Zabbix.</p>
+        <div class="chips"><span class="chip">Linux</span><span class="chip">Docker</span><span class="chip">nginx</span><span class="chip">Zabbix</span></div>
+      </article>
+      <article class="icard warm">
+        <span class="label">Campo e indústria</span>
+        <h3>RFID, IoT e eletrônica</h3>
+        <p>Trabalho com leitores e coletores RFID, dispositivos IoT conectados a equipamentos industriais via Modbus e integração com IHMs.</p>
+        <div class="chips"><span class="chip">RFID UHF</span><span class="chip">IoT</span><span class="chip">Modbus</span><span class="chip">Eletrônica</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="arquitetura">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Visão de arquitetura</p>
+      <h2>Como os sistemas se conectam</h2>
+      <p class="lead">Três fluxos de dados estruturados com o time, do equipamento ao indicador.</p>
+    </div>
+    <div class="lanes">
+      <div class="lane">
+        <p class="label">Rastreio RFID<small>peças e enxoval</small></p>
+        <div class="nodes">
+          <span class="node">Peças com etiqueta RFID</span><span class="arrow">→</span>
+          <span class="node">Leitores e coletores</span><span class="arrow">→</span>
+          <span class="node mine">Middleware RFID</span><span class="arrow">→</span>
+          <span class="node mine">Inventory<small>web + app Android</small></span><span class="arrow">→</span>
+          <span class="node">Clientes e gestão</span>
+        </div>
+      </div>
+      <div class="lane">
+        <p class="label">Produção<small>equipamentos industriais</small></p>
+        <div class="nodes">
+          <span class="node">Máquinas e IHMs</span><span class="arrow">→</span>
+          <span class="node">IoT · Modbus · REST</span><span class="arrow">→</span>
+          <span class="node mine">Portal Túnel</span><span class="arrow">→</span>
+          <span class="node">Indicadores de OEE</span>
+        </div>
+      </div>
+      <div class="lane">
+        <p class="label">Dados corporativos<small>ERP e parceiros</small></p>
+        <div class="nodes">
+          <span class="node">ERP</span><span class="arrow">→</span>
+          <span class="node mine">ETL Python</span><span class="arrow">→</span>
+          <span class="node mine">Banco intermediário</span><span class="arrow">→</span>
+          <span class="node">Parceiro externo<small>via VPN</small></span>
+        </div>
+      </div>
+    </div>
+    <p class="legend"><span><i></i>Componentes desenvolvidos pelo time sob minha supervisão</span></p>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Projetos</p>
+      <h2>Sistemas que estão rodando</h2>
+    </div>
+
+    <article class="feature">
+      <div>
+        <span class="label tag-warm">RFID · Produto principal</span>
+        <h3>Inventory</h3>
+        <p class="lead" style="font-size:16px">Plataforma de controle de inventário por RFID para lavanderias hospitalares, com portal web e app Android para coletores portáteis.</p>
+        <ul>
+          <li><strong>Regras de negócio</strong> definidas em conjunto com as áreas que usam o sistema no dia a dia.</li>
+          <li><strong>Mockups do app</strong> criados e validados antes do desenvolvimento, seguindo a identidade da GAO Sistemas.</li>
+          <li><strong>Integração com hardware</strong> por meio de um middleware próprio que recebe as leituras RFID.</li>
+          <li><strong>Atende clientes externos</strong>, com variações por operação.</li>
+        </ul>
+        <div class="chips"><span class="chip">RFID</span><span class="chip">Android</span><span class="chip">Web</span><span class="chip">Mockups</span></div>
+      </div>
+      <div>
+        <div class="phone" aria-label="Mockup ilustrativo do app Inventory">
+          <div class="screen">
+            <div class="app-bar"><small>GAO Sistemas · Inventory</small><strong>Contagem · Rouparia 2</strong></div>
+            <div class="app-body">
+              <div class="count"><small>Peças lidas</small><b>12.480</b><div class="bar"><span></span></div></div>
+              <div class="row"><span>Lençol</span><span>4.112</span></div>
+              <div class="row"><span>Pijama adulto</span><span>3.075</span></div>
+              <div class="row"><span>Toalha de banho</span><span>2.940</span></div>
+              <div class="row"><span>Campo cirúrgico</span><span>2.353</span></div>
+              <div class="app-btn">Finalizar contagem</div>
+            </div>
+          </div>
+        </div>
+        <p class="label mock-note">Mockup ilustrativo · dados de exemplo</p>
+      </div>
+    </article>
+
+    <div class="projects">
+      <article class="proj">
+        <span class="label tag-warm">RFID · Integração</span>
+        <h3>Middleware RFID</h3>
+        <p>Software que integra os leitores RFID e envia as leituras ao Inventory. Em produção.</p>
+        <div class="chips"><span class="chip">Persistência</span><span class="chip">TLS</span><span class="chip">Reconexão</span></div>
+        <p class="out">Evoluído em fases para ganhar estabilidade de conexão, persistência de dados e segurança.</p>
+      </article>
+      <article class="proj">
+        <span class="label tag-warm">Indústria · BI</span>
+        <h3>Portal Túnel</h3>
+        <p>BI da linha de produção conectado à IHM dos equipamentos via API, com frontend modular.</p>
+        <div class="chips"><span class="chip">Flask</span><span class="chip">SQLite</span><span class="chip">Chart.js</span></div>
+        <p class="out">Painel de OEE montado por arrastar e soltar para a produção acompanhar seus indicadores.</p>
+      </article>
+      <article class="proj">
+        <span class="label tag-cool">Dados · Segurança</span>
+        <h3>Banco intermediário do ERP</h3>
+        <p>Arquitetura para compartilhar apenas os dados necessários do ERP com um parceiro externo.</p>
+        <div class="chips"><span class="chip">Oracle</span><span class="chip">Python</span><span class="chip">ETL</span><span class="chip">VPN</span></div>
+        <p class="out">Acesso somente leitura, área de staging e conexão isolada por VPN, sem expor o ERP de produção.</p>
+      </article>
+      <article class="proj">
+        <span class="label tag-cool">Plataforma interna</span>
+        <h3>WIKI GAO</h3>
+        <p>Portal de documentação interna com controle de acesso por perfil, editor rico e fluxogramas.</p>
+        <div class="chips"><span class="chip">Flask</span><span class="chip">nginx</span><span class="chip">Mermaid</span></div>
+        <p class="out">Inclui um portal público de ajuda para clientes e virou a fonte única de documentação.</p>
+      </article>
+      <article class="proj">
+        <span class="label tag-warm">RFID · Cliente externo</span>
+        <h3>Dashboard de rastreio RFID</h3>
+        <p>Protótipo de painel de inventário por zona para um cliente do setor têxtil.</p>
+        <div class="chips"><span class="chip">Vue 3</span><span class="chip">Chart.js</span></div>
+        <p class="out">Indicadores por zona e tendência com regressão linear para antecipar falta de peças.</p>
+      </article>
+      <article class="proj">
+        <span class="label tag-cool">Gestão · Automação</span>
+        <h3>Painel de entregas do time</h3>
+        <p>Dados do ClickUp consolidados com Google Apps Script e exibidos num painel web.</p>
+        <div class="chips"><span class="chip">Apps Script</span><span class="chip">JavaScript</span><span class="chip">Cloudflare</span></div>
+        <p class="out">Visibilidade das entregas e das horas do time. Substituído pela WIKI quando ela passou a cobrir a necessidade.</p>
+      </article>
+      <article class="proj">
+        <span class="label tag-cool">Plataforma interna</span>
+        <h3>CRM GAO</h3>
+        <p>Sistema onde vivem as comandas e ordens de produção, com API própria e aplicação web.</p>
+        <div class="chips"><span class="chip">Web API</span><span class="chip">Web App</span></div>
+        <p class="out">Conecta o pedido do cliente ao que acontece na produção.</p>
+      </article>
+      <article class="proj">
+        <span class="label tag-cool">Automação · Google</span>
+        <h3>Gestão Contratual</h3>
+        <p>Automação da gestão de contratos em Google Apps Script integrada ao Google Workspace.</p>
+        <div class="chips"><span class="chip">Apps Script</span><span class="chip">Google Sheets</span></div>
+        <p class="out">Centraliza o acompanhamento de contratos sem depender de planilhas soltas.</p>
+      </article>
+      <article class="proj">
+        <span class="label tag-cool">Infra · Rede</span>
+        <h3>Monitoramento de rede</h3>
+        <p>Ambiente Zabbix integrado à rede MikroTik para acompanhar disponibilidade e tráfego.</p>
+        <div class="chips"><span class="chip">Zabbix</span><span class="chip">MikroTik</span><span class="chip">NetFlow</span></div>
+        <p class="out">Mais visibilidade sobre a rede e respostas mais rápidas a falhas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="label">Competências</p>
+      <h2>Ferramentas do dia a dia</h2>
+    </div>
+    <div class="stack">
+      <div><h3>Gestão</h3><div class="chips"><span class="chip">Liderança de equipes</span><span class="chip">Mapeamento de processos</span><span class="chip">Requisitos</span><span class="chip">Mockups</span><span class="chip">Priorização</span><span class="chip">Documentação</span><span class="chip">ClickUp</span></div></div>
+      <div><h3>Software</h3><div class="chips"><span class="chip">Python · Flask</span><span class="chip">JavaScript</span><span class="chip">Vue 3</span><span class="chip">PHP</span><span class="chip">Android</span><span class="chip">Apps Script</span><span class="chip">SQL</span><span class="chip">Git · GitHub</span></div></div>
+      <div><h3>Infra e suporte</h3><div class="chips"><span class="chip">Redes</span><span class="chip">Firewall</span><span class="chip">VPN</span><span class="chip">GLPI</span><span class="chip">Controle de ativos</span><span class="chip">Ordens de serviço</span><span class="chip">Linux</span><span class="chip">Docker</span><span class="chip">Zabbix</span></div></div>
+      <div><h3>Campo e indústria</h3><div class="chips"><span class="chip">RFID</span><span class="chip">IoT</span><span class="chip">Modbus</span><span class="chip">IHM</span><span class="chip">Eletrônica</span><span class="chip">MikroTik · UniFi</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap contact">
+    <div>
+      <p class="label">Contato</p>
+      <h2 style="margin-top:12px">Vamos conversar sobre o próximo projeto.</h2>
+    </div>
+    <div class="lines">
+      <div class="cline"><span id="email">rikallyts@gmail.com</span><button class="copy" type="button" id="copy-email">Copiar e-mail</button></div>
+      <div class="cline"><span>github.com/rikallyts</span><a class="copy" href="https://github.com/rikallyts" target="_blank" rel="noopener" style="text-decoration:none">Abrir ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><footer><span>Rikally · Supervisor de TI</span><span>Gestão de equipes, desenvolvimento, infraestrutura e automação de processos</span></footer></div>
+
+<script>
+document.getElementById('copy-email').addEventListener('click', function(){
+  var btn = this, el = document.getElementById('email'), txt = el.textContent;
+  function selectIt(){ var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selecionado, use Ctrl+C'; }
+  try { navigator.clipboard.writeText(txt).then(function(){ btn.textContent = 'Copiado'; }, selectIt); }
+  catch(e){ selectIt(); }
+  setTimeout(function(){ btn.textContent = 'Copiar e-mail'; }, 2200);
+});
+</script>
+</body>
+</html>
